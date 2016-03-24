@@ -2,12 +2,12 @@ var request = require('request');
 
 function main(params) {
 	var oauth  ={
-		consumer_key:'pKMBwaUsbBRm56mj7a0AJgmXa',
-		consumer_secret:'oBQGOeORQDxmt7rrvDnEcGxyMEl0IH2sni2M8bpiZ73KBat0e5',
-		token:'3091244997-F7OYkY633s051QSmG2oQZatxIu3NXWqwKUVajrl',
-		token_secret:'JNc1DmChkBFedr5WEc0BNCjom4fntwjTsXmqXCScu9uyU'
+		consumer_key:'',
+		consumer_secret:'',
+		token:'',
+		token_secret:''
 	};
-	var tweet = params.twit || 'Hello World';
+	var tweet = params.twit || 'OpenWhisk Action - Change detected in Cloudant';
 	var url = 'https://api.twitter.com/1.1/statuses/update.json?status='+ tweet;
 
 	var result;
