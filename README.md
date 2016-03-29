@@ -3,28 +3,36 @@ This demo aims to demonstrate the power of OpenWhisk event programing compute. I
 - a Todo list application running on Cloud Foundry or Docker and using the Bluemix Cloudant NoSQL database service
 - a javascript action (tweet.js) to publish a tweet each time it is triggered
 
-Deploy the todo list node application with a Cloudant Database using Cloud Foundry or Docker container:
+1. Deploy the todo list node application with a Cloudant Database using Cloud Foundry or Docker container:
 https://www.github.com/edevregille/node-todo-cloudant
 
-Set-up the OpenWhisk command line and set your OpenWhisk namespace and authorization key:
+2. Set-up the OpenWhisk command line and set your OpenWhisk namespace and authorization key:
 https://new-console.ng.bluemix.net/openwhisk/cli
 
-Create the OpenWhisk action:
+3. Update the twwet.js file with your Twitter developer account credentatials.
+
+4. Create the OpenWhisk action:
 ```
   wsk action create myAction tweet.js
 ```
 
-Create the Cloudant package using the Bluemix system packages:
+5. Create the Cloudant package using the Bluemix system packages:
 ```
   wsk package refresh
 ```
 
-Create the trigger using the Cloudant package feed changes:
+6. Create the trigger using the Cloudant package feed changes:
 ```
   wsk trigger create myTrigger --feed /<namespace>/<cloudant>/changes -p dbname todo-demo p includeDoc true
 ```
 
-Create the rule:
+7. Create the rule:
 ```
   wsk rule create myRule --enable myTrigger myAction
+```
+
+8. Test by adding a new item from the Todo list application --> check that the tweet has been properly published.
+Note that you can observe the logs:
+```
+  wsk activation poll
 ```
